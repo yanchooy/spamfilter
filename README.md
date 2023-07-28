@@ -1,7 +1,19 @@
-# Building Spam Filter using Naive Bayes Algorithm
-## About the dataset
-The dataset of 5,572 SMS messages that are already classified by humans was put together by Tiago A. Almeida and José María Gómez Hidalgo, and it can be downloaded from the [The UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/sms+spam+collection).
+# Introduction
+Using a [UCI Machine Learning Repository dataset](https://archive.ics.uci.edu/ml/datasets/sms+spam+collection) of 5,572 SMS messages that are already classified by humans put together by Tiago A. Almeida and José María Gómez Hidalgo, this project seeks to build a filter that can sieve out spam messages by training a portion of this data and testing it with the rest of the portion.  
 
+# Project Goals
+Build a predictive spam filter using conditional probability principles of Naive Bayes Algorithm
+
+# Conclusion
+Despite having a 98% accuracy when compared to human classification, there are still some limitations to this method of classification:
+- The training set may not be large enough to identify all possible spam/ham words, and the lack of probabilities of these words can skew the classification.
+- Certain connecting words like `to` or words require dependence on context (as seen in message 319) may incorrectly skew the classification.
+- Duplicates of words in the same text may increase probability of its classification.
+- Short lengths of message may have heavier weight on a single word skewing the overall result.
+- Outliers will require upclose human investigation given the different nuances and context the words will reveal when used together.
+  
+ 
+# Analysis Steps
 ## Data clean and Preparing training and test set
 1)	Randomise data before splitting data into 80% training set and 20% test set
 2)	Check that the percentage of spam/ham in each training and test set is similar to the original 100% data.
@@ -51,7 +63,7 @@ The dataset of 5,572 SMS messages that are already classified by humans was put 
 16)	**Calculate accuracy**, we will use number of correctly classified messages divide by total number of classified message. 
 17)	To count number of correctly classified messages, we can loop through test dataframe and compare ‘label’ column with ‘predicted’ column, for each row that is equivalent, then increment correct count by 1
 
-## Checking outliers and limiations of algorithm
+## Checking outliers and limitations of algorithm
 There are 14 messages that were not classified correctly, detailed analysis and visualisation were done for 3 messages to understand the cause of misclassification.
 
 ![word_not_found](https://github.com/yanchooy/spamfilter/assets/109457905/e1505a65-45e2-4f41-ac3a-f588883f2d0b)
@@ -62,12 +74,5 @@ There are 14 messages that were not classified correctly, detailed analysis and 
 
 ![159](https://github.com/yanchooy/spamfilter/assets/109457905/3bf1843f-5c00-4ba1-8af7-c2d8d7ef0e85)
 
-# Conclusion
 
-While our predictive algorithm has a 98% accuracy, we find that there are still some limitations to this method of classification:
-- The training set may not be large enough to identify all possible spam/ham words, and the lack of missing probabilities can skew the classification. 
-- Certain connecting words like `to` or words that require dependence on context (as seen in message 319) may incorrectly skew the classification.
-- Duplicates of words in the same text may increase probability of its classification.
-- Short lengths of message may have heavier weight on a single word skewing the overall result.
 
- These observations tells us that while text classification models are effective to a large extent, there are still outliers that need to be taken care of given the different nuances and context the words will reveal when used together, therefore human classification is still important for counter checking results.
